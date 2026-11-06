@@ -1,0 +1,148 @@
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #eef1f5;
+  color: #222;
+  height: 100vh;
+}
+
+/* ---------- Pantalla del nombre ---------- */
+.targeta {
+  max-width: 360px;
+  margin: 15vh auto 0;
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+.targeta h1 { font-size: 1.3rem; margin-top: 0; }
+.targeta form { display: flex; flex-direction: column; gap: 10px; }
+
+input, button { font: inherit; padding: 8px 10px; border-radius: 6px; }
+input { border: 1px solid #bbb; background: #fff; }
+button { border: none; background: #2f6fed; color: #fff; cursor: pointer; }
+button:disabled { background: #9db5e8; cursor: default; }
+
+/* ---------- Pantalla del chat ---------- */
+.pantalla-xat { display: flex; height: 100vh; }
+
+.lateral {
+  width: 240px;
+  background: #fff;
+  border-right: 1px solid #ddd;
+  padding: 16px;
+  overflow-y: auto;
+}
+.lateral h2 { font-size: 1rem; margin: 16px 0 8px; }
+.jo { margin: 0; font-size: .9rem; color: #555; }
+.ajuda { font-size: .8rem; color: #888; }
+
+/* ---------- Lista de conectados ---------- */
+.llista-usuaris { list-style: none; padding: 0; margin: 0; }
+.llista-usuaris li {
+  padding: 8px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.llista-usuaris li::before {
+  content: '';
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #bbb;              /* gris = sin conexión P2P */
+}
+.llista-usuaris li.p2p::before { background: #2bb34a; }  /* verde = P2P abierto */
+.llista-usuaris li:hover { background: #f0f3f8; }
+.llista-usuaris li.actiu { background: #dfe8fd; }
+.llista-usuaris li.buit { cursor: default; color: #888; }
+.llista-usuaris li.buit::before { display: none; }
+
+.badge {
+  margin-left: auto;
+  background: #e5484d;
+  color: #fff;
+  font-size: .75rem;
+  padding: 1px 7px;
+  border-radius: 10px;
+}
+
+/* ---------- Zona del chat ---------- */
+.xat { flex: 1; display: flex; flex-direction: column; min-width: 0; }
+.sense-xat { align-items: center; justify-content: center; color: #888; }
+.cap-xat {
+  padding: 10px 16px;
+  background: #fff;
+  border-bottom: 1px solid #ddd;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ---------- Compartir pantalla ---------- */
+.boto-pantalla { font-size: .85rem; padding: 6px 12px; }
+.boto-pantalla.aturar { background: #e5484d; }
+
+.zona-pantalla {
+  background: #111;
+  padding: 8px;
+}
+.zona-pantalla video {
+  display: block;
+  width: 100%;
+  max-height: 55vh;
+  object-fit: contain;     /* se ve la pantalla entera, sin recortar */
+}
+.etiqueta { margin: 0 0 6px; font-size: .8rem; color: #aaa; }
+
+.previa {
+  padding: 8px 16px;
+  background: #f7f8fa;
+  border-bottom: 1px solid #ddd;
+}
+.previa .etiqueta { color: #666; }
+.previa video { width: 200px; border-radius: 6px; background: #111; }
+
+.missatges {
+  flex: 1;
+  list-style: none;
+  margin: 0;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.missatges li {
+  max-width: 70%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  word-wrap: break-word;
+}
+.missatges li.meu { align-self: flex-end; background: #2f6fed; color: #fff; }
+.missatges li.seu { align-self: flex-start; background: #fff; }
+.missatges li.sistema {
+  align-self: center;
+  background: none;
+  color: #888;
+  font-size: .8rem;
+  font-style: italic;
+}
+
+.form-missatge {
+  display: flex;
+  gap: 8px;
+  padding: 12px;
+  background: #fff;
+  border-top: 1px solid #ddd;
+}
+.form-missatge input { flex: 1; }
+
+@media (max-width: 600px) {
+  .pantalla-xat { flex-direction: column; }
+  .lateral { width: 100%; max-height: 35vh; border-right: none; border-bottom: 1px solid #ddd; }
+}
